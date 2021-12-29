@@ -7,10 +7,11 @@ interface MDViewerProps {
 
 export const MDViewer = ({title, contents}:MDViewerProps) => {
     return (
-        <div>
-        <div dangerouslySetInnerHTML={
+        <article>
+            <h1>{title}</h1>
+        <section dangerouslySetInnerHTML={
             { __html: marked(contents)}
         } />
-        </div>
+        </article>
     )
 }
