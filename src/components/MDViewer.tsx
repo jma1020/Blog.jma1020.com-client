@@ -1,16 +1,18 @@
 import { marked } from 'marked'
 
 interface MDViewerProps {
-    title: string;
-    contents: string;
+    Title: string;
+    author: string;
+    Contents: string;
 }
 
-export const MDViewer = ({title, contents}:MDViewerProps) => {
+export const MDViewer = ({Title, author,Contents}:MDViewerProps) => {
     return (
         <article>
-            <h1>{title}</h1>
-        <section dangerouslySetInnerHTML={
-            { __html: marked(contents)}
+            <h1>{Title}</h1>
+            <h2>{author}</h2>
+            <section dangerouslySetInnerHTML={
+            { __html: marked(Contents)}
         } />
         </article>
     )
