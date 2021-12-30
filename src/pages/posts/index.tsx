@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import { MDViewer } from "../../components/MDViewer";
 import useSWR from 'swr'
 import { fetcher } from "../../utils/fetcher";
-import { defaultHead } from "next/head";
 import { PostData } from "../../types/Post";
 
 
