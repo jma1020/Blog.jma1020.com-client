@@ -15,12 +15,11 @@ const SignInPage: NextPage = () => {
         setPwd(e.target.value)
     }
 
-    const handleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
+    const handleSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
 
-        signin(email,pwd).then((res)=>{
-            console.log(res)
-        })
+        const response = await signin(email,pwd)
+        console.log(response)
     }
 
     return (
