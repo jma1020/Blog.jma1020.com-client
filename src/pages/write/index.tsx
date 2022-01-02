@@ -1,6 +1,9 @@
 import { NextPage } from "next";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
+import { useMemeber } from "../../hooks/useMember";
+import { useRouter } from "next/router";
+
 
 const write = (title: string , post: string) => {
     axios.post('http://localhost:1337/api/posts/',{
@@ -20,6 +23,16 @@ const write = (title: string , post: string) => {
 const WritePage:NextPage =() => {
     const [ title, setTitle ] =useState('')
     const [ post, setPost] = useState('')
+    const { userData, loggedIn} =useMemeber()
+    const router = useRouter()
+    console.log(userData)
+    console.log(loggedIn)
+
+    useEffect(()=>{
+        if(!loggedIn) {
+            router.push('/posts');
+        }
+    })
 
     const handleTextAreaChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
         setPost(e.target.value)
@@ -36,7 +49,7 @@ const WritePage:NextPage =() => {
 
     return(
         <div>
-            <h1>글 작성</h1>
+            <h1>{userData.username}글 작성</h1>
             <form onSubmit={handleSubmnit}>
                 <input type="text" onChange={handleTitleChange} value={title}/>
                 <textarea onChange={handleTextAreaChange} value={post}  />
